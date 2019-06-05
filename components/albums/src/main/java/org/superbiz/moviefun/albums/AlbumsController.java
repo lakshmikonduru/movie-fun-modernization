@@ -22,7 +22,7 @@ import static java.lang.String.format;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 
 @Controller
-@RequestMapping("/albums")
+@RequestMapping("/org/superbiz/moviefun/albums")
 public class AlbumsController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -37,8 +37,8 @@ public class AlbumsController {
 
     @GetMapping
     public String index(Map<String, Object> model) {
-        model.put("albums", albumsBean.getAlbums());
-        return "albums";
+        model.put("org/superbiz/moviefun/albums", albumsBean.getAlbums());
+        return "org/superbiz/moviefun/albums";
     }
 
     @GetMapping("/{albumId}")

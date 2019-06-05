@@ -19,9 +19,10 @@ public class Application {
     }
 
     @Bean
-    public ServletRegistrationBean actionServletRegistration(ActionServlet actionServlet) {
-        return new ServletRegistrationBean(actionServlet, "/moviefun/*");
+    public ServletRegistrationBean actionServletRegistration(MovieServlet movieServlet) {
+        return new ServletRegistrationBean(movieServlet, "/moviefun/*");
     }
+
 
     @Bean
     ServiceCredentials serviceCredentials(@Value("${vcap.services}") String vcapServices) {
