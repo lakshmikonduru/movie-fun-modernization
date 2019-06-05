@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.superbiz.moviefun.blobstore.BlobStore;
+import org.superbiz.moviefun.blobstore.FileStore;
 import org.superbiz.moviefun.blobstore.S3Store;
 
 @SpringBootApplication
@@ -33,6 +34,7 @@ public class Application {
         ServiceCredentials serviceCredentials,
         @Value("${vcap.services.photo-storage.credentials.endpoint:#{null}}") String endpoint
     ) {
+        System.out.println("==========================The Value of endpoint is "+endpoint);
         String photoStorageAccessKeyId = serviceCredentials.getCredential("photo-storage", "user-provided", "access_key_id");
         String photoStorageSecretKey = serviceCredentials.getCredential("photo-storage", "user-provided", "secret_access_key");
         String photoStorageBucket = serviceCredentials.getCredential("photo-storage", "user-provided", "bucket");
@@ -46,4 +48,14 @@ public class Application {
 
         return new S3Store(s3Client, photoStorageBucket);
     }
+
+   /* @Bean
+    public BlobStore blobStore(
+            ServiceCredentials serviceCredentials,
+            @Value("${vcap.services.photo-storage.credentials.endpoint:#{null}}") String endpoint
+    ) {
+
+
+        return new FileStore();
+    }*/
 }
